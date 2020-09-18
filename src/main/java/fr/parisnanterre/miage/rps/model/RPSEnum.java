@@ -1,4 +1,5 @@
 package fr.parisnanterre.miage.rps.model;
 
-public enum RSPEnum {
+public enum RPSEnum {
+    ROCK, PAPER, SCISSORS
 }

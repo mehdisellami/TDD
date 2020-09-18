@@ -30,4 +30,18 @@ public class RockPaperScissorsTest {
         assertEquals(rps.Resultplay(valueOf(p1),valueOf(p2)),Result.WIN);
     }
 
+
+    @Parameters({"papier","papier"})
+    @Test
+    public void  testTiePlay(String p1, String p2){
+        assertEquals(rps.Resultplay(valueOf(p1),valueOf(p2)),Result.TIE);
+    }
+
+    @Parameters({"pierre","papier"})
+    @Test
+    public void  testLostPlay(RPSEnum p1, RPSEnum p2){
+        assertEquals(rps.Resultplay(valueOf(p1.name()),valueOf(p2.name())),Result.LOST);
+    }
+
+
 }

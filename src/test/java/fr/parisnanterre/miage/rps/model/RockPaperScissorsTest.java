@@ -1,9 +1,6 @@
 package fr.parisnanterre.miage.rps.model;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static fr.parisnanterre.miage.rps.model.RPSEnum.*;
 import static org.testng.Assert.assertEquals;
@@ -13,35 +10,71 @@ public class RockPaperScissorsTest {
     RockPaperScissors rps;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
 
 
-        rps= new RockPaperScissors() ;
+        rps = new RockPaperScissors();
     }
 
     @AfterMethod
-    public void tearDown(){
-        rps= null ;
+    public void tearDown() {
+        rps = null;
     }
 
-    @Parameters({"papier","pierre"})
+    @Parameters({"papier", "pierre"})
     @Test
-    public void testPlay(String p1, String p2){
-        assertEquals(rps.Resultplay(valueOf(p1),valueOf(p2)),Result.WIN);
+    public void testPlay(String p1, String p2) {
+        assertEquals(rps.Resultplay(valueOf(p1), valueOf(p2)), Result.WIN);
     }
 
 
-    @Parameters({"papier","papier"})
+    @Parameters({"papier", "papier"})
     @Test
-    public void  testTiePlay(String p1, String p2){
-        assertEquals(rps.Resultplay(valueOf(p1),valueOf(p2)),Result.TIE);
+    public void testTiePlay(String p1, String p2) {
+        assertEquals(rps.Resultplay(valueOf(p1), valueOf(p2)), Result.TIE);
     }
 
-    @Parameters({"pierre","papier"})
+    @Parameters({"pierre", "papier"})
     @Test
-    public void  testLostPlay(RPSEnum p1, RPSEnum p2){
-        assertEquals(rps.Resultplay(valueOf(p1.name()),valueOf(p2.name())),Result.LOST);
+    public void testLostPlay(RPSEnum p1, RPSEnum p2) {
+        assertEquals(rps.Resultplay(valueOf(p1.name()), valueOf(p2.name())), Result.LOST);
     }
+
+    @DataProvider(name = "winData")
+    public Object[][] createWinData() {
+        return new Object[][]{
+                {"papier", "pierre"},
+                {"ciseaux", "papier"},
+                {"pierre", "ciseaux"},
+        };
+    }
+
+    @DataProvider(name = "lostData")
+    public Object[][] createLostData() {
+        return new Object[][]{
+                    {"pierre", "papier"},
+                    {"papier", "ciseaux"},
+                    {"ciseaux","pierre"},
+            };
+
+
+        }
+
+    @DataProvider(name = "tieData")
+    public Object[][] createTieData() {
+        return new Object[][]{
+                {"papier", "papier"},
+                {"ciseaux", "ciseaux"},
+                {"pierre","pierre"},
+        };
+    }
+
+    @Test(dataProvider = "winData")
+    public void testWinPlay ( RPSEnum p1 , RPSEnum p2 ) {
+        assertEquals(rps.Resultplay(valueOf(p1.name()), valueOf(p2.name())), Result.WIN);
+    }
+
+
 
 
 }

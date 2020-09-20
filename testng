@@ -1,14 +1,16 @@
 <?xml version =" 1. 0 " encoding ="UTF−8"?>
         <!DOCTYPE suite SYSTEM " http://testng.org/testng−1.0.dtd">
 <suite name ="RPS" verbose ="1" >
-    <parameter name ="paper " value ="PAPER" />
-    <parameter name ="rock" value ="ROCK" />
-    <parameter name ="rock" value ="SCISSORS" />
-    <test name ="testWinPlay" >
+    <parameter name ="paper " value ="PAPER"/>
+    <parameter name ="rock" value ="ROCK"/>
+    <parameter name ="rock" value ="SCISSORS"/>
+    <test name ="testWinPlay1" >
         <classes>
             <class name ="fr.parisnanterre.miage.rps.model.RockPaperScissorsTest">
                 <methods>
-                    <include name =" testWinPlay"></include>
+                    <include name ="testWinPlay1"></include>
+
+    
                 </methods>
             </class>
         </classes>
